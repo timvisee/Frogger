@@ -1,8 +1,13 @@
+#ifndef IMAGES_H
+#define IMAGES_H
+
 /* 
  * SIMPLE IMAGES FOR RENDERING TO THE LED SCREEN.
  * 8 pixels-per-byte
  * Gaurav Manek, 2014
  */
+
+const byte IMG_PIXEL [] PROGMEM = {0b10000000};
 
 //
 // Online Services:
@@ -101,3 +106,4 @@ const byte IMG_TRUCK [] PROGMEM = {0b11000000, 0b11000000, 0b11000000, 0b1100000
 #define IMG_TRUCK_WIDTH  4
 #define IMG_TRUCK_HEIGHT 2
 
+#endif

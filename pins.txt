@@ -1,9 +1,9 @@
-arduino = led
+== Arduino/LED Matrix pin configuration
 
-5v = 5v side
-gnd = gnd side
-
-9 = cs
-10 = wr
-11 = data
-12 = clk
+[ARDUINO PIN] [MATRIX PIN]
+5V            5V
+GND           GND
+9             CS1
+10            WR
+11            DATA
+12            CLK

@@ -14,6 +14,18 @@
 
 #include "Logger.h"
 #include "HT1632.h"
+#include "images.h"
+
+/**
+ * Color enum.
+ * This enumeration could be used to select the color to draw.
+ */
+enum Color {
+	COLOR_NONE,
+	COLOR_GREEN,
+	COLOR_RED,
+	COLOR_ORANGE
+};
 
 /**
  * DisplayDriver class.
@@ -33,6 +45,8 @@ private:
 	int pinClock;
 	/** Defines whether the display has been set up. */
 	bool setupStatus;
+	/** Defines the color being drawn on the display. */
+	Color color;
 
 public:
 	/**
@@ -138,6 +152,20 @@ private:
 
 public:
 	/**
+	 * Get the color being drawn.
+	 *
+	 * @return The color being drawn.
+	 */
+	Color getColor();
+
+	/**
+	 * Set the color being drawn.
+	 *
+	 * @param color The color being drawn.
+	 */
+	void setColor(Color color);
+
+	/**
 	 * Set up method. This method needs to be called before the display driver is used in order to set up the display.
 	 *
 	 * @return True if the display has been set up successfully, false otherwise.
@@ -184,6 +212,47 @@ public:
 	 * @return True on success, false on failure.
 	 */
 	bool clear(bool render);
+
+	/**
+	 * Render the bufferend screen.
+	 *
+	 * @return True on success, false on failure.
+	 */
+	bool render();
+
+	/**
+	 * Draw a pixel at the specified location.
+	 *
+	 * @param x The x coordinate of the pixel to draw.
+	 * @param y The y coordinate of the pixel to draw.
+	 *
+	 * @return True on success, false on failure.
+	 */
+	bool drawPixel(int x, int y);
+	
+	/**
+	 * Draw a line at the specified location.
+	 *
+	 * @param x1 The x coordinate of the first point.
+	 * @param y1 The y coordinate of the first point.
+	 * @param x2 The x coordinate of the last point.
+	 * @param y2 The y coordinate of the last point.
+	 *
+	 * @return True on succes, false on failure.
+	 */
+	bool drawLine(int x1, int y1, int x2, int y2);
+
+	/**
+	 * Draw a rectangle at the specified location.
+	 *
+	 * @param x1 The x coordinate of the first corner.
+	 * @param y1 The y coordinate of the first corner.
+	 * @param x2 The x coordinate of the last corner.
+	 * @param y2 The y coordinate of the last corner.
+	 *
+	 * @return True on success, false on failure.
+	 */
+	bool drawRect(int x1, int y1, int x2, int y2);
 
 	/**
 	 * Check whether the display driver has a valid pin configuration.

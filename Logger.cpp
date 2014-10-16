@@ -25,7 +25,6 @@ bool Logger::isStarted() {
 	return (bool) Serial;
 }
 
-
 bool Logger::log(String msg) {
 	// Make sure the logger is started
 	if(!Logger::isStarted())
