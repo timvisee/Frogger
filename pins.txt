@@ -1,0 +1,9 @@
+arduino = led
+
+5v = 5v side
+gnd = gnd side
+
+9 = cs
+10 = wr
+11 = data
+12 = clk
