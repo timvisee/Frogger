@@ -34,6 +34,7 @@ void DisplayDriver::init() {
 	this->pinClock = 0;
 	this->setupStatus = false;
 	this->color = COLOR_GREEN;
+	this->brightness = DISPLAYDRIVER_BRIGHTNESS_DEF;
 }
 
 int DisplayDriver::getCsPin() {
@@ -224,7 +225,7 @@ bool DisplayDriver::drawPixel(int x, int y) {
 	if(!this->isSetup())
 		return false;
 
-	// Draw the pixel, return the result
+	// Draw the pixel with it's proper color
 	if(this->getColor() == COLOR_GREEN || this->getColor() == COLOR_ORANGE) {
 		HT1632.selectChannel(0);
 		HT1632.drawImage(IMG_PIXEL, 1, 1, x, y);
@@ -233,99 +234,27 @@ bool DisplayDriver::drawPixel(int x, int y) {
 		HT1632.selectChannel(1);
 		HT1632.drawImage(IMG_PIXEL, 1, 1, x, y);
 	}
+
+	// Pixel drawn, return the result
 	return true;
 }
 
-bool DisplayDriver::drawLine(int x1, int y1, int x2, int y2) {
-	int x, y, dx, dy, dx1, dy1, px, py, xe, ye, i;
-	dx = x2 - x1;
-	dy = y2 - y1;
-	dx1 = fabs(dx);
-	dy1 = fabs(dy);
-	px = 2 * dy1 - dx1;
-	py = 2 * dx1 - dy1;
-
-	if(dy1 <= dx1) {
-		if(dx >= 0) {
-			x = x1;
-			y = y1;
-			xe = x2;
-		} else {
-			x = x2;
-			y = y2;
-			xe = x1;
-		}
-		
-		// Draw the pixel
-		this->drawPixel(x, y);
-
-		for(i = 0; x < xe; i++) {
-			x = x + 1;
-
-			if(px < 0)
-				px = px + 2 * dy1;
-
-			else {
-				if((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
-					y = y + 1;
-				else
-					y = y - 1;
-				px = px + 2 * (dy1 - dx1);
-			}
-
-			// Draw the pixel
-			this->drawPixel(x, y);
-		}
-
-	} else {
-		if(dy >= 0) {
-			x = x1;
-			y = y1;
-			ye = y2;
-		} else {
-			x = x2;
-			y = y2;
-			ye = y1;
-		}
-		
-		// Draw the pixel
-		this->drawPixel(x, y);
-
-		for(i = 0; y < ye; i++) {
-			y = y + 1;
-
-			if(py <= 0)
-				py = py + 2 * dx1;
-
-			else {
-				if((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
-					x = x + 1;
-				else
-					x = x - 1;
-
-				py = py + 2 * (dx1 - dy1);
-			}
-			
-			// Draw the pixel
-			this->drawPixel(x, y);
-		}
-	}
+int DisplayDriver::getBrightness() {
+	this->brightness;
 }
 
-bool DisplayDriver::drawRect(int x1, int y1, int x2, int y2) {
-	// Get the minimum and maximum coordinate values
-	int xMin = min(x1, x2);
-	int yMin = min(y1, y2);
-	int xMax = max(x1, x2);
-	int yMax = max(y1, y2);
-	
-	// Draw the rectangle
-	this->drawLine(xMin, yMin, xMin, yMax);
-	this->drawLine(xMin, yMin, xMax, yMin);
-	this->drawLine(xMin, yMax, xMax, yMax);
-	this->drawLine(xMax, yMin, xMax, yMax);
+bool DisplayDriver::setBrightness(int b) {
+	// Make sure the display has been set up
+	if(!this->isSetup())
+		return false;
 
-	// Rectangle drawn, return the result
+	// Make sure the brightness level is valid
+	if(b < 1 || b > 16)
+		return false;
+
+	// Set the brightness level, return the result
+	HT1632.setBrightness(b);
+	this->brightness = b;
 	return true;
 }
 

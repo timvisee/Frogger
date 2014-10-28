@@ -104,6 +104,9 @@ class HT1632Class
     uint8_t _tgtRender;
     uint8_t _tgtChannel;
     byte * mem [5];
+
+	// The methods bellow are originally private
+public:
     void writeCommand(char);
     void writeData(byte, uint8_t);
     void writeDataRev(byte, uint8_t);
@@ -130,6 +133,7 @@ class HT1632Class
     void drawImage(const byte img [], uint8_t width, uint8_t height, int8_t x, int8_t y, int offset = 0);
     void drawText(const byte text [], int x, int y, const byte font [], int font_end [], uint8_t font_height, uint8_t gutter_space = 1);
     int getTextWidth(const byte text [], int font_end [], uint8_t font_height, uint8_t gutter_space = 1);
+	int getBrightness();
     void setBrightness(char brightness, char selectionmask = 0b00010000);
 };
 

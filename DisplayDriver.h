@@ -16,6 +16,8 @@
 #include "HT1632.h"
 #include "images.h"
 
+#define DISPLAYDRIVER_BRIGHTNESS_DEF 1
+
 /**
  * Color enum.
  * This enumeration could be used to select the color to draw.
@@ -47,6 +49,8 @@ private:
 	bool setupStatus;
 	/** Defines the color being drawn on the display. */
 	Color color;
+	/** The brightness of the display. */
+	int brightness;
 
 public:
 	/**
@@ -229,30 +233,22 @@ public:
 	 * @return True on success, false on failure.
 	 */
 	bool drawPixel(int x, int y);
-	
-	/**
-	 * Draw a line at the specified location.
-	 *
-	 * @param x1 The x coordinate of the first point.
-	 * @param y1 The y coordinate of the first point.
-	 * @param x2 The x coordinate of the last point.
-	 * @param y2 The y coordinate of the last point.
-	 *
-	 * @return True on succes, false on failure.
-	 */
-	bool drawLine(int x1, int y1, int x2, int y2);
 
 	/**
-	 * Draw a rectangle at the specified location.
+	 * Get the brightness of the display.
 	 *
-	 * @param x1 The x coordinate of the first corner.
-	 * @param y1 The y coordinate of the first corner.
-	 * @param x2 The x coordinate of the last corner.
-	 * @param y2 The y coordinate of the last corner.
-	 *
-	 * @return True on success, false on failure.
+	 * @return The brightness of the display
 	 */
-	bool drawRect(int x1, int y1, int x2, int y2);
+	int getBrightness();
+
+	/**
+	 * Set the brightness of the this display.
+	 *
+	 * @param b The brightness of the display.
+	 * The brightness value must be a number from 1 tot 16.
+	 * The value may never be zero.
+	 */
+	bool setBrightness(int b);
 
 	/**
 	 * Check whether the display driver has a valid pin configuration.

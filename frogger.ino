@@ -1,13 +1,23 @@
 #include <Arduino.h>
 #include "Defaults.h"
 #include "Logger.h"
+#include "FPSCounter.h"
 #include "DisplayDriver.h"
+#include "DrawPipe.h"
+#include "GameController.h"
+#include "FroggerGame.h"
 #include "HT1632.h"
 #include "font_5x4.h"
 #include "images.h"
 
 /** Display driver instance. This driver is used to drive the main display. */
 DisplayDriver disp = DisplayDriver(PIN_CS, PIN_WRITE, PIN_DATA, PIN_CLOCK);
+/** FPS Counter instance */
+FPSCounter fps = FPSCounter(2000);
+/** Game controller instance */
+GameController gc = GameController();
+
+unsigned long nextUpdate = 0;
 
 /**
  * Called once on start
@@ -29,6 +39,16 @@ void setup() {
 
 	// Successfully initialized, show a status message
 	Logger::info("Initialized successfully, Cave Johnson here!");
+
+	// Starting the frogger game using the game controller
+	Logger::debug("Starting frogger game...");
+	gc.setGame(FroggerGame());
+	Logger::debug("Frogger game started!");
+
+	// Reset the FPS counter
+	fps.reset();
+
+	nextUpdate = millis();
 }
 
 /**
@@ -36,7 +56,37 @@ void setup() {
  */
 void loop () {
 	// Draw
-	draw();
+	drawGame();
+}
+
+/**
+ * Called when a frame should be drawn.
+ */
+void drawGame() {
+	// Count the next FPS frame
+	fps.count();
+	if(fps.ready()) {
+		Logger::info("FPS: " + String(fps.getFps()));
+		fps.reset();
+	}
+
+	if(nextUpdate <= millis()) {
+		gc.updateGame();
+		nextUpdate = millis() + 500;
+	}
+
+	// Clear the screen buffer
+	disp.clear(false);
+	
+	// Create a draw pipe to draw on the display
+	DrawPipe pipe = DrawPipe(&disp);
+	
+	// Render the game through the game controller
+	gc.renderGame(&pipe);
+
+	// Render the display
+	disp.render();
+	//Logger::debug("Display updated!");
 }
 
 /**
@@ -50,23 +100,32 @@ void draw() {
 	disp.clear(false);
 	
 	// Draw the demo
-	drawDemo();
+	//drawDemo();
+	// Create a draw pipe
+	DrawPipe pipe = DrawPipe(&disp);
+	pipe.drawPixel(1, 1);
+	//HT1632.writeCommand(0x09);
+	disp.render();
+
 
 	// Wait a little before drawing the next frame
 	delay(500);
 }
 
 void drawDemo() {
+	// Create a draw pipe
+	DrawPipe pipe = DrawPipe(&disp);
+
 	int max = random(2, 10);
 
 	for(int i = 0; i < max; i++) {
 		// Draw a random line
 		selectRandomColor();
-		disp.drawLine(random(0, 16), random(0, 16), random(0, 16), random(0, 16));
+		pipe.drawLine(random(0, 16), random(0, 16), random(0, 16), random(0, 16));
 		
 		// Draw a random rectangle
 		selectRandomColor();
-		disp.drawRect(16 + random(0, 16), random(0, 16), 16 + random(0, 16), random(0, 16));
+		pipe.drawRect(16 + random(0, 16), random(0, 16), 16 + random(0, 16), random(0, 16));
 		
 		// Render the buffered screen
 		disp.render();
@@ -110,12 +169,15 @@ void lanes() {
 	HT1632.drawImage(IMG_LANE, IMG_LANE_WIDTH,  IMG_LANE_HEIGHT, 0, 9);
 	HT1632.drawImage(IMG_LANE, IMG_LANE_WIDTH,  IMG_LANE_HEIGHT, 0, 12);
 	HT1632.drawImage(IMG_LANE, IMG_LANE_WIDTH,  IMG_LANE_HEIGHT, 0, 3);*/
+
+	// Create a draw pipe
+	DrawPipe pipe = DrawPipe(&disp);
 	
 	disp.setColor(COLOR_RED);
-	disp.drawLine(0, 3, 32, 3);
-	disp.drawLine(0, 6, 32, 6);
-	disp.drawLine(0, 9, 32, 9);
-	disp.drawLine(0, 12, 32, 12);
+	pipe.drawLine(0, 3, 32, 3);
+	pipe.drawLine(0, 6, 32, 6);
+	pipe.drawLine(0, 9, 32, 9);
+	pipe.drawLine(0, 12, 32, 12);
 }
 
 void frog() {
