@@ -53,10 +53,10 @@ bool Logger::debug(String msg) {
 
 String Logger::getTimeString() {
     // Get the seconds and milliseconds part of the string
-    int totalSec = floor(millis() / 1000);
+	int totalSec = Time.getSeconds();
 	int min = floor(totalSec / 60);
     int sec = totalSec % 60;
-    int mil = millis() % 1000;
+    int mil = Time.getMillis(true);
     
     // Build and return the time string with proper formatting
 	return Logger::getFormattedNumber(min, 2) + ":" + Logger::getFormattedNumber(sec, 2) + "." + Logger::getFormattedNumber(mil, 3);

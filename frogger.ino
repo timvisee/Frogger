@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "Defaults.h"
 #include "Logger.h"
+#include "Time.h"
 #include "FPSCounter.h"
 #include "DisplayDriver.h"
 #include "DrawPipe.h"
@@ -48,7 +49,7 @@ void setup() {
 	// Reset the FPS counter
 	fps.reset();
 
-	nextUpdate = millis();
+	nextUpdate = Time.getMillis();
 }
 
 /**
@@ -72,7 +73,7 @@ void drawGame() {
 
 	if(nextUpdate <= millis()) {
 		gc.updateGame();
-		nextUpdate = millis() + 500;
+		nextUpdate = Time.getMillis() + 500;
 	}
 
 	// Clear the screen buffer

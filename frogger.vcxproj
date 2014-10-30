@@ -105,6 +105,7 @@
     <ClInclude Include="Logger.h">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Visual Micro\.frogger.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +117,7 @@
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="HT1632.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

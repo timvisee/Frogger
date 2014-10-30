@@ -13,6 +13,7 @@
 #define LOGGER_H
 
 #include <Arduino.h>
+#include "Time.h"
 #include "Defaults.h"
 
 /**

@@ -9,7 +9,7 @@ bool Game::update() {
 }
 
 bool Game::render(DrawPipe * dp) {
-	// Draw random pixels
+	// Draw random pixels, for debugging
 	for(int i = 0; i < 32; i++) {
 		for(int j = 0; j < 16; j++) {
 			dp->setColor(static_cast<Color>(random(0, 4)));
