@@ -1,0 +1,4 @@
+﻿Compiling 'frogger' for 'Arduino Uno'
+Binary sketch size: 15.704 bytes (used 49% of a 32.256 byte maximum) (4,98 secs)
+Uploading to I/O board using 'COM7'
+Done uploading

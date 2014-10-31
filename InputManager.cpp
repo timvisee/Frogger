@@ -11,7 +11,29 @@
 
 #include "InputManager.h"
 
+InputManager::InputManager() {
+	this->btnForward = TKButton(14);
+	this->btnLeft = TKButton(15);
+	this->btnRight = TKButton(16);
+	this->init();
+}
+
 bool InputManager::init() {
-	// TODO: Complete this method!
+	// Initialize the buttons
+	this->btnForward = TKButton(I0);
+	this->btnLeft = TKButton(I1);
+	this->btnRight = TKButton(I2);
 	return true;
+}
+
+bool InputManager::goForward() {
+	return this->btnForward.pressed();
+}
+
+bool InputManager::goLeft() {
+	return this->btnLeft.pressed() || this->btnLeft.held();
+}
+
+bool InputManager::goRight() {
+	return this->btnRight.pressed() || this->btnRight.held();
 }

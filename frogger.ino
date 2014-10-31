@@ -54,7 +54,7 @@ void setup() {
 /**
  * Called once each loop
  */
-void loop () {
+void loop() {
 	// Do the game logic
 	doGameLogic();
 }

@@ -141,6 +141,15 @@ public:
 	 * @return Surface area of the rectangle.
 	 */
 	int getSurface();
+
+	/**
+	 * Check whether two rectangles are overlapping each other.
+	 *
+	 * @param other The other rectangle to check for overlapping with the current
+	 *
+	 * @return True if the rectangles are overlapping, false otherwise.
+	 */
+	bool isOverlapping(Rect * other);
 };
 
 #endif

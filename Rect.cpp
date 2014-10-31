@@ -80,3 +80,10 @@ void Rect::setHeight(int h) {
 int Rect::getSurface() {
 	return this->getWidth() * this->getHeight();
 }
+
+bool Rect::isOverlapping(Rect * other) {
+	return (this->pos.getX() < other->getX() + other->getWidth() &&
+		this->getX() + this->getWidth() > other->getX() &&
+		this->getY() < other->getY() + other->getHeight() &&
+		this->getY() + this->getHeight() > other->getY());
+}

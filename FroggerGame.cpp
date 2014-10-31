@@ -13,68 +13,101 @@
 
 FroggerGame::FroggerGame() {
 	this->view = Viewport(0, 0, 32, 16);
-	this->pos = 7;
 	this->roadOffset = 0;
+	
+	this->frogger = Frogger(Point(15, 0));
+
+	// Instantiate all the roads
+	for(int i = 0; i < FROGGER_ROAD_COUNT; i++)
+		this->roads[i] = Road(4 + i * 5);
+
+	this->dead = false;
+	this->won = false;
+	this->viewFade = 0;
 }
 
 bool FroggerGame::tick() {
-	// Write a status message to the console
-	this->pos++;
-	this->pos = ((this->pos + 6) % 38) - 6;
+	// Tick the road, return false on failure
+	for(int i = 0; i < FROGGER_ROAD_COUNT; i++)
+		if(!this->roads[i].tick())
+			return false;
+
+	// Check whether the frogger collides with any car
+	if(this->isHitByCar())
+		this->dead = true;
+
+	if(this->viewFade > 0) {
+		this->view.setY(this->view.getY() + 1);
+		this->viewFade--;
+	}
 
 	// Return the result
 	return true;
 }
 
 bool FroggerGame::update() {
-	// Write a status message to the console
-	//Logger::debug("FroggerGame update called!");
+	// Process the input
+	if(this->input.goForward()) {
+		this->frogger.forward();
+
+		if(this->frogger.getPosition().getY() < 6)
+			this->viewFade += 2;
+		else
+			this->viewFade += 5;
+	}
+	if(this->input.goLeft())
+		this->frogger.left();
+	if(this->input.goRight())
+		this->frogger.right();
+
+	if(this->frogger.getPosition().getY() > FROGGER_ROAD_COUNT * 5 + 2)
+		this->won = true;
 
 	// Return the result
 	return true;
 }
 
 bool FroggerGame::render(DrawPipe * dp) {
-	/* // Draw random pixels, for debugging
-	for(int i = 0; i < 32; i++) {
-		for(int j = 0; j < 16; j++) {
-			dp->setColor(static_cast<Color>(random(0, 4)));
-			dp->drawPixel(i, j);
-		}
-	}*/
+	// Check whether the frogger won or died
+	if(this->won) {
+		dp->setColor(COLOR_GREEN);
+		dp->drawRectFill(0, 0, 31, 15);
+		return true;
+	}
+	if(this->dead) {
+		dp->setColor(COLOR_RED);
+		dp->drawRectFill(0, 0, 31, 15);
+		return true;
+	}
 
-	// Draw the roads
-	this->drawRoad(dp);
+	// Draw the roads, return false on failure
+	if(!this->drawRoad(dp))
+		return false;
 
-	this->drawFrog(dp);
-
-	this->drawCar(dp);
-
-	//dp->drawPixel(7, this->pos);*/
+	// Draw the frog
+	this->drawFrogger(dp);
 
 	// Return the result
 	return true;
 }
 
-void FroggerGame::drawRoad(DrawPipe * dp) {
-	dp->setColor(COLOR_ORANGE);
-	dp->drawLine(-this->view.getX() + 0, -this->view.getY() + 3, -this->view.getX() + 31, -this->view.getY() + 3);
-	dp->drawLine(-this->view.getX() + 0, -this->view.getY() + 8, -this->view.getX() + 31, -this->view.getY() + 8);
-	dp->drawLine(-this->view.getX() + 0, -this->view.getY() + 13, -this->view.getX() + 31, -this->view.getY() + 13);
+bool FroggerGame::drawRoad(DrawPipe * dp) {
+	// Draw the road, return the result
+	for(int i = 0; i < FROGGER_ROAD_COUNT; i++)
+		this->roads[i].draw(dp, &this->view);
+	return true;
 }
 
-void FroggerGame::drawFrog(DrawPipe * dp) {
-	dp->setColor(COLOR_GREEN);
-	dp->drawRect(-this->view.getX() + 10, -this->view.getY() + 10, -this->view.getX() + 12, -this->view.getY() + 12);
-	dp->drawPixel(-this->view.getX() + 11, -this->view.getY() + 11);
-	dp->setColor(COLOR_RED);
+bool FroggerGame::isHitByCar() {
+	// Check whether the frogger is hit by any car
+	for(int i = 0; i < FROGGER_ROAD_COUNT; i++)
+		if(this->roads[i].isHitByCar(&this->frogger))
+			return true;
 
-	if(millis() % 1000 < 500) {
-		dp->drawPixel(-this->view.getX() + 10, -this->view.getY() + 10);
-		dp->drawPixel(-this->view.getX() + 12, -this->view.getY() + 10);
-	}
+	// Frogger not hit, return false
+	return false;
 }
 
-void FroggerGame::drawCar(DrawPipe * dp) {
-	this->c.drawCar(dp, &this->view, this->pos);
+bool FroggerGame::drawFrogger(DrawPipe * dp) {
+	return this->frogger.draw(dp, &this->view);
 }

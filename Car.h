@@ -16,9 +16,10 @@
 #include "Point.h"
 #include "Rect.h"
 #include "Viewport.h"
+#include "Direction.h"
 
-#define CAR_WIDTH 4
-#define CAR_HEIGHT 6
+#define CAR_WIDTH 6
+#define CAR_HEIGHT 4
 
 /**
  * Car class.
@@ -27,9 +28,22 @@
  * @author Tim Visee
  */
 class Car {
-public:
+private:
 	/** Defines the position of the car. */
 	Point pos;
+
+public:
+	/**
+	 * Constructor.
+	 */
+	Car();
+
+	/**
+	 * Constructor.
+	 *
+	 * @param pos The position of the car.
+	 */
+	Car(Point pos);
 
 	/**
 	 * Get the position car.
@@ -37,6 +51,28 @@ public:
 	 * @return Position of the car.
 	 */
 	Point getPosition();
+
+	/**
+	 * Set the position of the car.
+	 *
+	 * @param pos The position of the car. =
+	 */
+	void setPosition(Point pos);
+
+	/**
+	 * Move the car one position to the specified direction.
+	 *
+	 * @param dir The direction to move the car to.
+	 */
+	void move(Direction dir);
+
+	/**
+	 * Move the car to the specified direction with a specified distance.
+	 *
+	 * @param dir The direction to move the car to.
+	 * @param distance The distance to move the car.
+	 */
+	void move(Direction dir, int distance);
 
 	/**
 	 * Get the rectangle hitbox of the car.
@@ -50,9 +86,9 @@ public:
 	 *
 	 * @param dp Display pipe reference to draw the car with.
 	 * @param view The viewport reference.
-	 * @param pos The position to draw the car at.
+	 * @param dir The direction the car is facing.
 	 */
-	bool drawCar(DrawPipe * dp, Viewport * view, int pos);
+	bool drawCar(DrawPipe * dp, Viewport * view, Direction dir);
 };
 
 #endif

@@ -17,7 +17,12 @@
 // TODO: Is Game.h still required?
 #include "Game.h"
 #include "Car.h"
+#include "Road.h"
+#include "FroggerClass.h"
 #include "Arduino.h"
+#include "InputManager.h"
+
+#define FROGGER_ROAD_COUNT 20
 
 /**
  * FroggerGame class.
@@ -28,10 +33,13 @@
 class FroggerGame {
 private:
 	Viewport view;
-
-	int pos;
+	Frogger frogger;
 	int roadOffset;
-	Car c;
+	Road roads[FROGGER_ROAD_COUNT];
+	bool dead;
+	bool won;
+	InputManager input;
+	int viewFade;
 
 public:
 	FroggerGame();
@@ -59,9 +67,23 @@ public:
 	 */
 	bool render(DrawPipe * dp);
 
-	void drawRoad(DrawPipe * dp);
-	void drawFrog(DrawPipe * dp);
-	void drawCar(DrawPipe * dp);
+	bool drawRoad(DrawPipe * dp);
+
+	/**
+	 * Check whether the frogger is hit by a car or not.
+	 *
+	 * @return True if the forgger is currently hit, false otherwise.
+	 */
+	bool isHitByCar();
+
+	/**
+	 * Draw the frogger.
+	 *
+	 * @param dp The draw pipe instance to draw the frogger with.
+	 *
+	 * @return True on success, false on failure.
+	 */
+	bool drawFrogger(DrawPipe * dp);
 };
 
 #endif

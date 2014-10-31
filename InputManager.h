@@ -12,6 +12,10 @@
 #ifndef INPUTMANAGER_H
 #define INPUTMANAGER_H
 
+#include "Arduino.h"
+#include "Defaults.h"
+#include "TinkerKit.h"
+
 /**
  * InputManager class.
  * 
@@ -19,13 +23,44 @@
  * @author Tim Visee
  */
 class InputManager {
+private:
+	TKButton btnForward;
+	TKButton btnLeft;
+	TKButton btnRight;
+
 public:
+	/**
+	 * Constructor.
+	 */
+	InputManager();
+
 	/**
 	 * Initialize.
 	 *
 	 * @return True on success, false on failure.
 	 */
-	static bool init();
+	bool init();
+
+	/**
+	 * Check whether the frogger should move forward
+	 *
+	 * @return True if the frogger should move forward
+	 */
+	bool goForward();
+
+	/**
+	 * Check whether the frogger should move to the left
+	 *
+	 * @return True if the frogger should move to the left
+	 */
+	bool goLeft();
+
+	/**
+	 * Check whether the frogger should move to the right
+	 * 
+	 * @return True if the frogger should move to the right.
+	 */
+	bool goRight();
 };
 
 #endif

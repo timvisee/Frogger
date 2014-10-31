@@ -82,6 +82,7 @@
     <ClInclude Include="Defaults.h">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="DisplayDriver.h">
       <FileType>CppCode</FileType>
     </ClInclude>
@@ -95,6 +96,7 @@
       <FileType>CppCode</FileType>
     </ClInclude>
     <ClInclude Include="FPSCounter.h" />
+    <ClInclude Include="FroggerClass.h" />
     <ClInclude Include="FroggerGame.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
@@ -110,8 +112,10 @@
     </ClInclude>
     <ClInclude Include="Point.h" />
     <ClInclude Include="Rect.h" />
+    <ClInclude Include="Road.h" />
     <ClInclude Include="TickController.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="TinkerKit.h" />
     <ClInclude Include="Viewport.h" />
     <ClInclude Include="Visual Micro\.frogger.vsarduino.h" />
   </ItemGroup>
@@ -120,6 +124,7 @@
     <ClCompile Include="DisplayDriver.cpp" />
     <ClCompile Include="DrawPipe.cpp" />
     <ClCompile Include="FPSCounter.cpp" />
+    <ClCompile Include="FroggerClass.cpp" />
     <ClCompile Include="FroggerGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameController.cpp" />
@@ -128,8 +133,10 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="Road.cpp" />
     <ClCompile Include="TickController.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="TinkerKit.cpp" />
     <ClCompile Include="Viewport.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
