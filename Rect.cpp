@@ -13,44 +13,70 @@
 
 Rect::Rect() {
 	// Set the field defaults
-	this->x = 0;
-	this->y = 0;
-	this->w = 0;
-	this->h = 0;
+	this->pos = Point();
+	this->size = Point();
+}
+
+Rect::Rect(int x, int y, int w, int h) {
+	this->pos.setX(x);
+	this->pos.setY(y);
+	this->size.setX(w);
+	this->size.setY(h);
+}
+
+Rect::Rect(Point pos, Point size) {
+	this->pos = pos;
+	this->size = size;
+}
+
+Point Rect::getPosition() {
+	return this->pos;
+}
+
+void Rect::setPosition(Point pos) {
+	this->pos = pos;
 }
 
 int Rect::getX() {
-	return this->x;
+	return this->pos.getX();
 }
 
 void Rect::setX(int x) {
-	this->x = x;
+	this->pos.setX(x);
 }
 
 int Rect::getY() {
-	return this->y;
+	return this->pos.getY();
 }
 
 void Rect::setY(int y) {
-	this->y = y;
+	this->pos.setY(y);
+}
+
+Point Rect::getSize() {
+	return this->size;
+}
+
+void Rect::setSize(Point size) {
+	this->size = size;
 }
 
 int Rect::getWidth() {
-	return this->w;
+	return this->size.getX();
 }
 
 void Rect::setWidth(int w) {
-	this->w = w;
+	this->size.setX(w);
 }
 
 int Rect::getHeight() {
-	return this->h;
+	return this->size.getY();
 }
 
 void Rect::setHeight(int h) {
-	this->h = h;
+	this->size.setY(h);
 }
 
 int Rect::getSurface() {
-	return this->w * this->h;
+	return this->getWidth() * this->getHeight();
 }

@@ -12,6 +12,8 @@
 #ifndef FROGGERGAME_H
 #define FROGGERGAME_H
 
+#include "Rect.h"
+#include "Viewport.h"
 // TODO: Is Game.h still required?
 #include "Game.h"
 #include "Car.h"
@@ -25,10 +27,10 @@
  */
 class FroggerGame {
 private:
+	Viewport view;
+
 	int pos;
-
 	int roadOffset;
-
 	Car c;
 
 public:

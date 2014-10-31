@@ -12,6 +12,7 @@
 #include "FroggerGame.h"
 
 FroggerGame::FroggerGame() {
+	this->view = Viewport(0, 0, 32, 16);
 	this->pos = 7;
 	this->roadOffset = 0;
 }
@@ -57,23 +58,23 @@ bool FroggerGame::render(DrawPipe * dp) {
 
 void FroggerGame::drawRoad(DrawPipe * dp) {
 	dp->setColor(COLOR_ORANGE);
-	dp->drawLine(0, 3, 31, 3);
-	dp->drawLine(0, 8, 31, 8);
-	dp->drawLine(0, 13, 31, 13);
+	dp->drawLine(-this->view.getX() + 0, -this->view.getY() + 3, -this->view.getX() + 31, -this->view.getY() + 3);
+	dp->drawLine(-this->view.getX() + 0, -this->view.getY() + 8, -this->view.getX() + 31, -this->view.getY() + 8);
+	dp->drawLine(-this->view.getX() + 0, -this->view.getY() + 13, -this->view.getX() + 31, -this->view.getY() + 13);
 }
 
 void FroggerGame::drawFrog(DrawPipe * dp) {
 	dp->setColor(COLOR_GREEN);
-	dp->drawRect(10, 10, 12, 12);
-	dp->drawPixel(11, 11);
+	dp->drawRect(-this->view.getX() + 10, -this->view.getY() + 10, -this->view.getX() + 12, -this->view.getY() + 12);
+	dp->drawPixel(-this->view.getX() + 11, -this->view.getY() + 11);
 	dp->setColor(COLOR_RED);
 
 	if(millis() % 1000 < 500) {
-		dp->drawPixel(10, 10);
-		dp->drawPixel(12, 10);
+		dp->drawPixel(-this->view.getX() + 10, -this->view.getY() + 10);
+		dp->drawPixel(-this->view.getX() + 12, -this->view.getY() + 10);
 	}
 }
 
 void FroggerGame::drawCar(DrawPipe * dp) {
-	this->c.drawCar(dp, this->pos);
+	this->c.drawCar(dp, &this->view, this->pos);
 }

@@ -1,55 +1,73 @@
 /**
- * Rect.h
+ * Viewport.h
  * Header file
  *
- * A rectangle object.
+ * This class represents a viewport.
  *
  * @author Tim Visee
  * @website http://timvisee.com/
  * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
  */
 
-#ifndef RECT_H
-#define RECT_H
+#ifndef VIEWPORT_H
+#define VIEWPORT_H
 
-#include "Point.h"
+#include "Rect.h"
 
-/**
- * Rect class.
- * 
- * @package core
- * @author Tim Visee
- */
-class Rect {
+class Viewport {
 private:
-	/** Defines the position of the rectangle. */
-	Point pos;
-	/** Defines the size of the rectangle. */
-	Point size;
+	Rect view;
 
 public:
 	/**
 	 * Constructor.
 	 */
-	Rect();
+	Viewport();
 
 	/**
 	 * Constructor.
 	 *
-	 * @param x X coordinate.
-	 * @param y Y coordinate.
-	 * @param w Rectangle width.
-	 * @param h Rectangle height.
+	 * @param w Viewport width
+	 * @param h Viewport height
 	 */
-	Rect(int x, int y, int w, int h);
+	Viewport(int w, int h);
 	
 	/**
 	 * Constructor.
 	 *
-	 * @param pos The position of the rectangle.
-	 * @param size The size of the rectangle.
+	 * @param size The size of the viewport.
 	 */
-	Rect(Point pos, Point size);
+	Viewport(Point size);
+	
+	/**
+	 * Constructor.
+	 *
+	 * @param view The rectangle that represents the viewport.
+	 */
+	Viewport(Rect view);
+
+	/**
+	 * Constructor.
+	 *
+	 * @param x Viewport x
+	 * @param y Viewport y
+	 * @param w Viewport width
+	 * @param h Viewport height
+	 */
+	Viewport(int x, int y, int w, int h);
+
+	/**
+	 * Constructor.
+	 *
+	 * @param pos Position of the viewport.
+	 * @param size Size of the viewport.
+	 */
+	Viewport(Point pos, Point size);
+
+	/**
+	 * Get the view as a rectangle.
+	 */
+	Rect getView();
 
 	/**
 	 * Get the position of the rectangle as a point.
@@ -134,13 +152,6 @@ public:
 	 * @param h Height of the rectangle.
 	 */
 	void setHeight(int h);
-
-	/**
-	 * Get the surface area of the rectangle.
-	 *
-	 * @return Surface area of the rectangle.
-	 */
-	int getSurface();
 };
 
 #endif

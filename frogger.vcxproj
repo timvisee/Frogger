@@ -108,9 +108,11 @@
     <ClInclude Include="Logger.h">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="TickController.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="Viewport.h" />
     <ClInclude Include="Visual Micro\.frogger.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +126,11 @@
     <ClCompile Include="HT1632.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="TickController.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Viewport.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

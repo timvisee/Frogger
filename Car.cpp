@@ -11,15 +11,19 @@
 
 #include "Car.h"
 
+Point Car::getPosition() {
+	return this->pos;
+}
+
 Rect Car::getHitbox() {
 	return Rect(0, 0, CAR_WIDTH, CAR_HEIGHT);
 }
 
-bool Car::drawCar(DrawPipe * dp, int pos) {
+bool Car::drawCar(DrawPipe * dp, Viewport * view, int pos) {
 	/** Defines the car x position. */
-	int x = pos;
+	int x = -view->getX() + pos;
 	/** Defines the car y position. */
-	int y = 4;
+	int y = -view->getY() + 4;
 	/** Defines the length in x of the car */
 	int xl = 6;
 	/** Defines the length in y of the car */
