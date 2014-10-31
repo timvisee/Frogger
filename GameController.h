@@ -13,6 +13,7 @@
 #define GAMECONTROLLER_H
 
 #include "Game.h"
+#include "FroggerGame.h"
 #include "DrawPipe.h"
 
 /**
@@ -24,7 +25,7 @@
 class GameController {
 private:
 	/** Instance of the current running game. */
-	Game g;
+	FroggerGame g;
 	/** Defines whether a game has been set. True if a game has been set, false otherwise. */
 	bool gSet;
 
@@ -39,14 +40,14 @@ public:
 	 *
 	 * @param g The instance of the game to run.
 	 */
-	GameController(Game g);
+	GameController(FroggerGame g);
 
 	/**
 	 * Get the instance of the current running game.
 	 * 
 	 * @return Instance of the current running game.
 	 */
-	Game * getGame();
+	FroggerGame * getGame();
 
 	/**
 	 * Set the current running game.
@@ -55,7 +56,7 @@ public:
 	 *
 	 * @return True on success, false on failure.
 	 */
-	bool setGame(Game g);
+	bool setGame(FroggerGame g);
 
 	/**
 	 * Chech whether a game has been set to run.

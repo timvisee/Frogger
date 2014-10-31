@@ -1,10 +1,17 @@
 #ifndef FROGGERGAME_H
 #define FROGGERGAME_H
 
+// TODO: Is Game.h still required?
 #include "Game.h"
 #include "Arduino.h"
 
-class FroggerGame : public Game {
+class FroggerGame {
+private:
+	int pos;
+
+public:
+	FroggerGame();
+
 	/**
 	 * Called once each tick.
 	 *

@@ -23,8 +23,8 @@
 /** The clock pin used by the display. */
 #define PIN_CLOCK 12
 /** Defines the number of desired ticks each second */
-#define TICK_COUNT 10
+#define TICK_COUNT 20
 /** Defines the number of milliseconds to show the FPS info. */
-#define FPS_INFO_INTERVAL 2000
+#define FPS_INFO_INTERVAL 5000
 
 #endif

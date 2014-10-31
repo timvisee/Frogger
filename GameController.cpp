@@ -16,16 +16,16 @@ GameController::GameController() {
 	this->gSet = false;
 }
 
-GameController::GameController(Game g) {
+GameController::GameController(FroggerGame g) {
 	// Set the game instance
 	this->setGame(g);
 }
 
-Game * GameController::getGame() {
+FroggerGame * GameController::getGame() {
 	return &this->g;
 }
 
-bool GameController::setGame(Game g) {
+bool GameController::setGame(FroggerGame g) {
 	// Set the game instance
 	this->g = g;
 	this->gSet = true;
