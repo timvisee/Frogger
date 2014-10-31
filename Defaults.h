@@ -13,7 +13,7 @@
 #define DEFAULTS_H
 
 /** The serial baud rate. */
-#define SERIAL_BAUD 9600
+#define SERIAL_BAUD 19200
 /** The CS pin used by the display. */
 #define PIN_CS 9
 /** The write pin used by the display. */
@@ -22,5 +22,9 @@
 #define PIN_DATA 11
 /** The clock pin used by the display. */
 #define PIN_CLOCK 12
+/** Defines the number of desired ticks each second */
+#define TICK_COUNT 10
+/** Defines the number of milliseconds to show the FPS info. */
+#define FPS_INFO_INTERVAL 2000
 
 #endif

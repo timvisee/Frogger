@@ -2,7 +2,7 @@
 
 bool Game::tick() {
 	// Write a status message to the console
-	Logger::debug("FroggerGame update called!");
+	//Logger::debug("FroggerGame update called!");
 
 	// Return the result
 	return true;
@@ -10,7 +10,7 @@ bool Game::tick() {
 
 bool Game::update() {
 	// Write a status message to the console
-	Logger::debug("FroggerGame update called!");
+	//Logger::debug("FroggerGame update called!");
 
 	// Return the result
 	return true;

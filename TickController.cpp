@@ -35,7 +35,7 @@ float TickController::getTickDelta() {
 
 bool TickController::tick() {
 	// Store the current time before doing the heavy calculations
-	float time = Time.getTime();
+	float time = Time::getTime();
 
 	// Get the time until the next tick and make sure we return false if we shouldn't tick yet
 	float nextIn = this->getNextTickIn(time);
@@ -48,7 +48,7 @@ bool TickController::tick() {
 
 	// Show a warning if any ticks are skipped
 	if(skipped > 0)
-		Logger::warning("Can't keep up, skipped " + String(skipped) + " ticks!");
+		Logger::warning("Can't keep up, skipped " + String(skipped) + " game ticks!");
 
 	// Calulcate the time the time we were late with the current tick, and make sure the value is positive
 	float lateCurrent = late - (skipped * this->getTickDelta());
@@ -57,12 +57,12 @@ bool TickController::tick() {
 
 	// Set the offset for the next frame, and set the last tick time. We should tick now, return true
 	this->offset = lateCurrent;
-	this->lastTick = time;
+	this->setLastTick(time);
 	return true;
 }
 
 float TickController::getNextTickIn() {
-	return this->getNextTickIn(Time.getTime());
+	return this->getNextTickIn(Time::getTime());
 }
 
 float TickController::getNextTickIn(float time) {
@@ -74,7 +74,7 @@ float TickController::getLastTick() {
 }
 
 void TickController::setLastTick() {
-	this->setLastTick(Time.getTime());
+	this->setLastTick(Time::getTime());
 }
 
 bool TickController::setLastTick(float lastTick) {

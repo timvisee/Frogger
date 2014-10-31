@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include "Time.h"
+#include "Logger.h"
 
 class TickController {
 private:

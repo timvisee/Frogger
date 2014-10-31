@@ -72,6 +72,13 @@ public:
 	bool updateGame();
 
 	/**
+	 * Fire a game tick.
+	 *
+	 * @return True on success, false on failure. False will also be returned if no game was set yet.
+	 */
+	bool tickGame();
+
+	/**
 	 * Render the game.
 	 *
 	 * @param dp Reference to a draw pipe that needs to be used to draw on the display.

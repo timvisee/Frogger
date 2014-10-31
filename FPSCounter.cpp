@@ -24,17 +24,17 @@ int FPSCounter::count() {
 
 void FPSCounter::reset() {
 	// Set the variables to it's defaults
-	this->start = Time.getMillis();
+	this->start = Time::getMillis();
 	this->frame = 0;
 }
 
 bool FPSCounter::ready() {
-	return (Time.getMillis() >= (this->start + this->dur));
+	return (Time::getMillis() >= (this->start + this->dur));
 }
 
 int FPSCounter::getFps() {
 	// Calculate the duration in time
-	unsigned long duration = Time.getMillis() - this->start;
+	unsigned long duration = Time::getMillis() - this->start;
 
 	// Calculate and return the FPS
 	return (int) (((float) this->frame) / ((float) duration / 1000));

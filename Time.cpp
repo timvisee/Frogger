@@ -27,5 +27,8 @@ unsigned long Time::getSeconds() {
 
 // TODO: Make sure the method bellow is returning proper values!
 float Time::getTime() {
-	return ((float) Time.getSeconds()) + ((float) ((float) (Time.getMillis(true)) / 1000));
+	float sec = Time::getSeconds();
+	float mil = Time::getMillis(true);
+	mil = mil / 1000;
+	return sec + mil;
 }

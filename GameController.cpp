@@ -47,6 +47,15 @@ bool GameController::updateGame() {
 	return this->g.update();
 }
 
+bool GameController::tickGame() {
+	// Make sure the game is set
+	if(!this->isGameSet())
+		return false;
+
+	// Tick the game, return the result
+	return this->g.tick();
+}
+
 bool GameController::renderGame(DrawPipe * dp) {
 	// Make sure the game is set
 	if(!this->isGameSet())
