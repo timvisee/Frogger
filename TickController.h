@@ -1,3 +1,14 @@
+/**
+ * TickController.h
+ * Header file
+ *
+ * The tick controller controlls all game tick timings and logic.
+ *
+ * @author Tim Visee
+ * @website http://timvisee.com/
+ * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
+ */
+
 #ifndef TICKCONTROLLER_H
 #define TICKCONTROLLER_H
 
@@ -5,6 +16,12 @@
 #include "Time.h"
 #include "Logger.h"
 
+/**
+ * TickController class.
+ * 
+ * @package core
+ * @author Tim Visee
+ */
 class TickController {
 private:
 	/** Defines the time the last tick occured */

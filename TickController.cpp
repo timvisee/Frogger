@@ -1,3 +1,14 @@
+/**
+ * TickController.cpp
+ * Source file
+ *
+ * The tick controller controlls all game tick timings and logic.
+ *
+ * @author Tim Visee
+ * @website http://timvisee.com/
+ * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
+ */
+
 #include "TickController.h"
 
 TickController::TickController() {
