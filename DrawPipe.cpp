@@ -140,6 +140,36 @@ bool DrawPipe::drawRect(int x1, int y1, int x2, int y2) {
 	return true;
 }
 
+bool DrawPipe::drawRectFill(int x1, int y1, int x2, int y2) {
+	return this->drawRectFill(x1, y1, x2, y2, this->getColor());
+}
+
+bool DrawPipe::drawRectFill(int x1, int y1, int x2, int y2, Color fill) {
+	// Store the original color
+	Color c = this->getColor();
+
+	// Draw the rectangle first, return false on failure
+	if(!this->drawRect(x1, y1, x2, y2))
+		return false;
+
+	// Get the minimum and maximum coordinate values
+	int xMin = min(x1, x2);
+	int yMin = min(y1, y2);
+	int xMax = max(x1, x2);
+	int yMax = max(y1, y2);
+	
+	// Set the fill color
+	this->setColor(fill);
+	
+	// Fill the rectangle
+	for(int x = xMin + 1; x < xMax; x++)
+		for(int y = yMin + 1; y < yMax; y++)
+			this->drawPixel(x, y);
+
+	// Restore the color
+	this->setColor(c);
+}
+
 Color DrawPipe::getColor() {
 	return this->driver->getColor();
 }
@@ -152,6 +182,24 @@ bool DrawPipe::setColor(Color color) {
 	// Set the color, return the result
 	this->driver->setColor(color);
 	return true;
+}
+
+int DrawPipe::getBrightness() {
+	// Make sure the display driver is valid
+	if(!this->isValid())
+		return -1;
+
+	// Get and return the brightness
+	return this->driver->getBrightness();
+}
+
+bool DrawPipe::setBrightness(int b) {
+	// Make sure the display driver is valid
+	if(!this->isValid())
+		return false;
+
+	// Set the brightness
+	this->driver->setBrightness(b);
 }
 
 bool DrawPipe::isValid() {
