@@ -77,6 +77,7 @@
     <ClInclude Include="..\HT1632\font_5x4.h" />
     <ClInclude Include="..\HT1632\font_8x4.h" />
     <ClInclude Include="..\HT1632\images.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Defaults.h">
       <FileType>CppCode</FileType>
     </ClInclude>
@@ -102,6 +103,7 @@
     <ClInclude Include="images.h">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Logger.h">
       <FileType>CppCode</FileType>
     </ClInclude>
@@ -117,6 +119,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="HT1632.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="TickController.cpp" />
     <ClCompile Include="Time.cpp" />

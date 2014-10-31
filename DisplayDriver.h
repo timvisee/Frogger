@@ -13,21 +13,11 @@
 #define DISPLAYDRIVER_H
 
 #include "Logger.h"
+#include "Color.h"
 #include "HT1632.h"
 #include "images.h"
 
 #define DISPLAYDRIVER_BRIGHTNESS_DEF 1
-
-/**
- * Color enum.
- * This enumeration could be used to select the color to draw.
- */
-enum Color {
-	COLOR_NONE,
-	COLOR_GREEN,
-	COLOR_RED,
-	COLOR_ORANGE
-};
 
 /**
  * DisplayDriver class.
