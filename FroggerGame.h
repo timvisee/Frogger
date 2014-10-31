@@ -6,6 +6,13 @@
 
 class FroggerGame : public Game {
 	/**
+	 * Called once each tick.
+	 *
+	 * @return True on success, false on failure.
+	 */
+	bool tick();
+
+	/**
 	 * Called once each game update.
 	 *
 	 * @return True on success, false on failure.

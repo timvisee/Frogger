@@ -24,6 +24,13 @@
 class Game {
 public:
 	/**
+	 * Called once each tick.
+	 *
+	 * @return True on success, false on failure.
+	 */
+	virtual bool tick();
+
+	/**
 	 * Called once each game update.
 	 *
 	 * @return True on success, false on failure.
