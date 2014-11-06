@@ -1,3 +1,14 @@
+/**
+ * FroggerClass.cpp
+ * Source file
+ *
+ * Frogger class, representing the frogger object.
+ *
+ * @author Tim Visee; Ben van de Hoeven; Hol Yuen Chung; Peiyi Phung
+ * @website http://timvisee.com/
+ * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
+ */
+
 #include "FroggerClass.h"
 
 Frogger::Frogger() {

@@ -1,3 +1,14 @@
+/**
+ * Road.cpp
+ * Source file
+ *
+ * Road class, representing a road object.
+ *
+ * @author Tim Visee; Ben van de Hoeven; Hol Yuen Chung; Peiyi Phung
+ * @website http://timvisee.com/
+ * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
+ */
+
 #include "Road.h"
 
 Road::Road() {

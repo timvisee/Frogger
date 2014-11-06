@@ -1,6 +1,23 @@
+/**
+ * Point.h
+ * Header file
+ *
+ * Point, class representing a point in a 2D space.
+ *
+ * @author Tim Visee; Ben van de Hoeven; Hol Yuen Chung; Peiyi Phung
+ * @website http://timvisee.com/
+ * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
+ */
+
 #ifndef POINT_H
 #define POINT_H
 
+/**
+ * Point class.
+ * 
+ * @package core
+ * @author Tim Visee
+ */
 class Point {
 private:
 	/** The x coordinate of the rectangle. */

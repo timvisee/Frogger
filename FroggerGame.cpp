@@ -4,7 +4,7 @@
  *
  * Frogger game.
  *
- * @author Tim Visee
+ * @author Tim Visee; Ben van de Hoeven; Hol Yuen Chung; Peiyi Phung
  * @website http://timvisee.com/
  * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
  */
@@ -12,18 +12,17 @@
 #include "FroggerGame.h"
 
 FroggerGame::FroggerGame() {
+	// Field defaults
 	this->view = Viewport(0, 0, 32, 16);
 	this->roadOffset = 0;
-	
 	this->frogger = Frogger(Point(15, 0));
+	this->dead = false;
+	this->won = false;
+	this->viewFade = 0;
 
 	// Instantiate all the roads
 	for(int i = 0; i < FROGGER_ROAD_COUNT; i++)
 		this->roads[i] = Road(4 + i * 5);
-
-	this->dead = false;
-	this->won = false;
-	this->viewFade = 0;
 }
 
 bool FroggerGame::tick() {
@@ -46,7 +45,7 @@ bool FroggerGame::tick() {
 }
 
 bool FroggerGame::update() {
-	// Process the input
+	// Process the input, move the frogger
 	if(this->input.goForward()) {
 		this->frogger.forward();
 
@@ -60,6 +59,7 @@ bool FroggerGame::update() {
 	if(this->input.goRight())
 		this->frogger.right();
 
+	// Check whether the frogger won
 	if(this->frogger.getPosition().getY() > FROGGER_ROAD_COUNT * 5 + 2)
 		this->won = true;
 

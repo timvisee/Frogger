@@ -1,3 +1,14 @@
+/**
+ * Road.h
+ * Header file
+ *
+ * Road, class representing a road object.
+ *
+ * @author Tim Visee; Ben van de Hoeven; Hol Yuen Chung; Peiyi Phung
+ * @website http://timvisee.com/
+ * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
+ */
+
 #ifndef ROAD_H
 #define ROAD_H
 
@@ -8,13 +19,23 @@
 #include "Direction.h"
 #include "FroggerClass.h"
 
+/**
+ * Road class.
+ * 
+ * @package core
+ * @author Tim Visee
+ */
 class Road {
 private:
+	/** Defines the position of the road. */
 	int pos;
 public:
+	/** Defines the cars driving on the road. */
 	Car cars[3];
 private:
+	/** Defines the car count on the road. */
 	int count;
+	/** Defines the directions the cars are driving in. */
 	Direction dir;
 
 public:

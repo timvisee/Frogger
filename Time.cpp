@@ -4,7 +4,7 @@
  *
  * This provides an interface to easly handle timings, such as the current time in milliseconds or seconds, or the delta time of a frame.
  *
- * @author Tim Visee
+ * @author Tim Visee; Ben van de Hoeven; Hol Yuen Chung; Peiyi Phung
  * @website http://timvisee.com/
  * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
  */

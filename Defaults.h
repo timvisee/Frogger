@@ -10,6 +10,7 @@
  */
 
 #ifndef DEFAULTS_H
+
 #define DEFAULTS_H
 
 #include "TinkerKit.h"

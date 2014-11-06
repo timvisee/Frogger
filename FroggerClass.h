@@ -1,3 +1,14 @@
+/**
+ * FroggerClass.h
+ * Header file
+ *
+ * Frogger Class, class representing the frogger object.
+ *
+ * @author Tim Visee; Ben van de Hoeven; Hol Yuen Chung; Peiyi Phung
+ * @website http://timvisee.com/
+ * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
+ */
+
 #ifndef FROGGER_H
 #define FROGGER_H
 
@@ -6,6 +17,12 @@
 #include "DrawPipe.h"
 #include "Viewport.h"
 
+/**
+ * FroggerClass class.
+ * 
+ * @package core
+ * @author Tim Visee
+ */
 class Frogger {
 private:
 	/** Defines the position of the frogger. */

@@ -4,7 +4,7 @@
  *
  * Frogger game.
  *
- * @author Tim Visee
+ * @author Tim Visee; Ben van de Hoeven; Hol Yuen Chung; Peiyi Phung
  * @website http://timvisee.com/
  * @copyright Copyright (c) Tim Visee 2014. All rights reserved.
  */
@@ -67,6 +67,13 @@ public:
 	 */
 	bool render(DrawPipe * dp);
 
+	/**
+	 * Draw all the roads with the cars on them.
+	 *
+	 * @param dp Reference to a draw pipe that needs to be used to draw on the display.
+	 *
+	 * @return True on success, false on failure.
+	 */
 	bool drawRoad(DrawPipe * dp);
 
 	/**
